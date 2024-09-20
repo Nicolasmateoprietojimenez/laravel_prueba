@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('nivel_riesgo', function (Blueprint $table) {
+            $table->id('id_nivel_riesgo');
+            $table->string('descp_nivel_riesgo');
+            $table->unsignedBigInteger('id_tipo_nivel_riesgo');
+            $table->foreign('id_tipo_nivel_riesgo')->references('id_tipo_nivel_riesgo')->on('tipo_nivel_riesgo');
+            $table->timestamps();
+        });
+        
+        
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('nivel_riesgo');
+    }
+};
